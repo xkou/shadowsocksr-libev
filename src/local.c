@@ -65,7 +65,9 @@
 #include "socks5.h"
 #include "acl.h"
 #include "http.h"
+extern const protocol_t *const http_protocol;
 #include "tls.h"
+extern const protocol_t *const tls_protocol;
 #include "local.h"
 
 #ifndef LIB_ONLY
@@ -687,7 +689,7 @@ server_recv_cb(EV_P_ ev_io *w, int revents)
 
                     ss_free(hostname);
                 } else {
-                    strncpy(host, ip, sizeof(ip));
+                    strncpy(host, ip, sizeof(host));
                 }
             }
 

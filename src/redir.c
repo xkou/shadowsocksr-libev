@@ -53,7 +53,9 @@
 #endif
 
 #include "http.h"
+extern const protocol_t *const http_protocol;
 #include "tls.h"
+extern const protocol_t *const tls_protocol;
 #include "netutils.h"
 #include "utils.h"
 #include "redir.h"

@@ -74,7 +74,7 @@ extern "C" {
     uint8_t  personal[BLAKE2S_PERSONALBYTES];  // 32
   } blake2s_param;
 
-CRYPTO_ALIGN( 64 ) typedef struct blake2s_state_
+typedef struct CRYPTO_ALIGN( 64 ) blake2s_state_
   {
     uint32_t h[8];
     uint32_t t[2];
@@ -102,7 +102,7 @@ CRYPTO_ALIGN( 64 ) typedef struct blake2s_state_
 #ifndef DEFINE_BLAKE2B_STATE
 typedef crypto_generichash_blake2b_state blake2b_state;
 #else
-CRYPTO_ALIGN( 64 ) typedef struct blake2b_state_
+ typedef struct CRYPTO_ALIGN( 64 ) blake2b_state_
   {
     uint64_t h[8];
     uint64_t t[2];
