@@ -5,3 +5,4 @@ rm -rf build
 mkdir build
 cd build
 cmake .. -DCMAKE_EXE_LINKER_FLAGS=-static
+make -j
