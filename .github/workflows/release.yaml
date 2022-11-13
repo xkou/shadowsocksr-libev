@@ -37,7 +37,7 @@ jobs:
       - name: new tag
         run: |
           git tag ${{ github.event.inputs.version }}
-          git push origin ${{ github.event.inputs.version }}
+          git push origin ${{ github.event.inputs.version }} || true
 
       - name: Publish
         uses: softprops/action-gh-release@v1
