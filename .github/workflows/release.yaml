@@ -26,6 +26,7 @@ jobs:
             echo ${{ github.workspace }}
             cd /ss
             sh ic.sh
+            cp build/src/ss_local ss-local-${{ matrix.job.target }}
 
       - name: Publish
         uses: softprops/action-gh-release@v1
