@@ -1,0 +1,36 @@
+name: release
+
+on: workflow_dispatch
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ${{ matrix.job.os }}
+    strategy:
+      matrix:
+        job:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-musl
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: build
+        uses: addnab/docker-run-action@v3
+        with:
+          image: frolvlad/alpine-gcc:latest
+          options: -v ${{ github.workspace }}:/ss
+          shell: sh
+          run: |
+            ls
+            echo ${{ github.workspace }}
+            cd /ss
+            sh ic.sh
+
+      - name: Publish
+        uses: softprops/action-gh-release@v1
+        with:
+            files: 'ss-local*'
+            draft: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
