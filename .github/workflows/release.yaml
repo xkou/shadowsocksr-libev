@@ -1,6 +1,12 @@
 name: release
 
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version
+        default: v1.0.0
+        required: true
 
 jobs:
   deploy:
@@ -33,6 +39,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
             files: 'ss-local*'
-            draft: true
+            draft: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
