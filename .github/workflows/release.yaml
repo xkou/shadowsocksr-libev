@@ -35,8 +35,9 @@ jobs:
             sh ic.sh
             cp build/src/ss_local ss-local-${{ matrix.job.target }}-${{ github.event.inputs.version }}
       - name: new tag
-        run: git tag ${{ github.event.inputs.version }}
-        run: git push origin ${{ github.event.inputs.version }}
+        run: |
+          git tag ${{ github.event.inputs.version }}
+          git push origin ${{ github.event.inputs.version }}
 
       - name: Publish
         uses: softprops/action-gh-release@v1
