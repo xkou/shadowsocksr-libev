@@ -10,19 +10,14 @@ jobs:
       matrix:
         job:
           - os: ubuntu-latest
-            target: arm64-unknown-linux-musl
-            use: pguyot/arm-runner-action@v2
-
-          - os: ubuntu-latest
             target: x86_64-unknown-linux-musl
             use: addnab/docker-run-action@v3
-
     steps:
       - name: checkout
         uses: actions/checkout@v2
 
       - name: build
-        uses: ${{ matrix.job.use }}
+        uses: addnab/docker-run-action@v3
         with:
           image: frolvlad/alpine-gcc:latest
           options: -v ${{ github.workspace }}:/ss
