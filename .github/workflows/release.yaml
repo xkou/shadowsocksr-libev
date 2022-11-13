@@ -33,7 +33,7 @@ jobs:
             echo ${{ github.workspace }}
             cd /ss
             sh ic.sh
-            cp build/src/ss_local ss-local-${{ matrix.job.target }}
+            cp build/src/ss_local ss-local-${{ matrix.job.target }}-${{ github.event.inputs.version }}
       - name: new tag
         run: git tag ${{ github.event.inputs.version }}
 
